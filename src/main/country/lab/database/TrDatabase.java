@@ -465,6 +465,7 @@ public class TrDatabase extends Database{
 
                 if(!restoreHistory.areWR(r.getVariable(), i, rIDTranslated, r.getPoId()))
                     restoreHistory.setWR(r.getVariable(), i, rIDTranslated, r.getPoId());
+            	addTransactionNames(restoreHistory);
                 if(!restoreHistory.isConsistent()){
                     restoreHistory.removeWR(r.getVariable(), i, rIDTranslated, r.getPoId());
                     continue;
@@ -544,6 +545,7 @@ public class TrDatabase extends Database{
                     h.setWR(r.getVariable(), translator.getID(w),
                             translator.getID(r), r.getPoId());
 
+                	addTransactionNames(h);
                     if (!h.isConsistent()) continue;
 
                     //We re-add the read in a causal manner to check consistency for the rest of the reads.

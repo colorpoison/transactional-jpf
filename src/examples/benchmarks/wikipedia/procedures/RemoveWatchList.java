@@ -9,7 +9,7 @@ public class RemoveWatchList extends WikipediaProcedure {
     }
 
     public void removeWatchList(int userID, int nameSpace, String pageTitle){
-        db.begin();
+        db.begin("RemoveWatchList");
 
         if(userID > 0){
             deleteWatchList(userID, nameSpace, pageTitle);

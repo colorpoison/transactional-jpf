@@ -20,7 +20,7 @@ public class OrderStatus extends BasicTPCCProcedure{
     public String orderStatus(int warehouseID, int districtID, int customerID,
                                      String customerName, boolean customerIDSearch){
         try {
-            db.begin();
+            db.begin("OrderStatus");
 
 
             var c = getCustomer

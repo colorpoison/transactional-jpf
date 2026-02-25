@@ -16,7 +16,7 @@ public class GetPageAnonymous extends WikipediaProcedure{
     public Article getPageAnonymous(boolean forSelect, String userIP,
                                     int pageNamespace, String pageTitle){
         try {
-            db.begin();
+            db.begin("GetPageAnonymous");
             var a = getPageAnonymousBody(forSelect, userIP, pageNamespace, pageTitle);
             db.commit();
             return a;

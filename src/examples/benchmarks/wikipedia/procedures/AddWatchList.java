@@ -11,7 +11,7 @@ public class AddWatchList extends WikipediaProcedure {
     }
 
     public void addWatchList(int userID, int nameSpace, String pageTitle) {
-        db.begin();
+        db.begin("AddWatchList");
 
         if(userID > 0) {
 

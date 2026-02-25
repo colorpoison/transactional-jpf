@@ -63,6 +63,8 @@ public class RunJPF extends Run {
   }
   
   public static void main (String[] args) {
+	
+	
     try {
       int options = getOptions(args);
 
@@ -112,6 +114,7 @@ public class RunJPF extends Run {
         // call its start() via reflection - interfaces would only work if
         // we instantiate a JPF object here, which would force us to duplicate all
         // the logging and event handling that preceedes JPF instantiation
+    	System.out.println();
         Class<?> jpfCls = cl.loadClass(JPF_CLASSNAME);
         if (!call( jpfCls, "start", new Object[] {conf,args})){
           error("cannot find 'public static start(Config,String[])' in " + JPF_CLASSNAME);

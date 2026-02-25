@@ -22,7 +22,7 @@ public class Payment extends BasicTPCCProcedure{
                                String customerName, boolean customerIDSearch, float paymentAmount){
 
         try {
-            db.begin();
+            db.begin("Payment");
 
             updateWarehouse(warehouseID, paymentAmount);
 

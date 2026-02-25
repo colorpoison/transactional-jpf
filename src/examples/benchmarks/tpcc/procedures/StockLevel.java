@@ -21,7 +21,7 @@ public class StockLevel extends BasicTPCCProcedure{
     public Integer stockLevel( int warehouseID, int districtID, int threshold){
 
         try {
-            db.begin();
+            db.begin("StockLevel");
             Integer orderID = getOrderID(warehouseID, districtID);
             var stockCount = getStockCount(warehouseID, districtID, threshold, orderID);
             db.commit();

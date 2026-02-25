@@ -20,7 +20,7 @@ public class CreateNewOrder extends BasicTPCCProcedure{
                                      int[] supplierWarehouseIDs, int[] orderQuantities){
 
         try {
-            db.begin();
+            db.begin("CreateNewOrder");
 
 
             var c = getCustomerById(warehouseID, districtID, customerID);

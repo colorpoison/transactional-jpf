@@ -1,4 +1,4 @@
-FROM ubuntu:lunar
+FROM ubuntu:24.04
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
@@ -12,7 +12,7 @@ RUN apt-get update && \
 RUN apt update && \
     apt -y upgrade && \
     apt -y install python3-pip && \
-    apt -y install python3.11-venv
+    apt -y install python3-venv
 
 RUN apt -y install python3-pandas python3-numpy python3-matplotlib
 

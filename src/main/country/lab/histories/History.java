@@ -3,18 +3,22 @@ package country.lab.histories;
 import com.rits.cloning.Cloner;
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.util.Pair;
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Random;
 
 public abstract class History {
     protected ArrayList<ArrayList<Boolean>> sessionOrderMatrix;
     protected HashMap<String,ArrayList<ArrayList<Pair<ArrayList<Integer>, HashSet<Integer>>>>> writeReadMatrix;
-
+    
     protected ArrayList<HashMap<String, ArrayList<Integer>>> writesPerTransaction;
     protected ArrayList<ArrayList<Boolean>> transitiveClosure;
+    public ArrayList<String> names;
     protected int numberTransactions;
 
     protected Boolean consistent;
@@ -22,6 +26,85 @@ public abstract class History {
 
     protected ArrayList<Boolean> committed;
 
+    public static int historyId = 0;
+    
+    public String toString() {
+    	StringBuilder sb = new StringBuilder();
+    	sb.append(writeReadString());
+    	sb.append("\n");
+    	sb.append(sessionOrderMatrix);
+    	sb.append("\n\n");
+    	sb.append(writesPerTransactionString());
+    	sb.append("\n");
+    	sb.append(String.join(";",names));
+    	return sb.toString();
+    }
+    private String writeReadString() {
+    	StringBuilder sb = new StringBuilder();
+		for(var entry:writeReadMatrix.entrySet()) {
+			var val = entry.getValue();
+			for(int write=0;write<val.size();write++) {
+				var val2 = val.get(write);
+				for(int read = 0;read < val2.size();read++) {
+					var pair = val2.get(read);
+					for(int i:pair._1) {
+						sb.append(entry.getKey());
+						sb.append(';');
+						sb.append(write);
+						sb.append(';');
+						sb.append(read);
+						sb.append(';');
+						sb.append(i);
+						sb.append("\n");
+					}
+				}
+			}
+		}
+		return sb.toString();
+    }
+    private String writesPerTransactionString() {
+    	StringBuilder sb = new StringBuilder();
+		for(int tid=0;tid< writesPerTransaction.size();tid++) {
+			for(var entry:writesPerTransaction.get(tid).entrySet()) {
+				for(int poid:entry.getValue()) {
+					sb.append(tid);
+					sb.append(';');
+					sb.append(entry.getKey());
+					sb.append(';');
+					sb.append(poid);
+					sb.append('\n');
+				}
+			}
+		}
+		return sb.toString();
+    }
+    
+    public void toFile(String filename) {
+
+    	File file = new File(filename);
+    	file.getParentFile().mkdirs();
+    	System.out.println("Working dir: " + System.getProperty("user.dir"));
+        FileWriter writer = null;
+        System.out.println("Writing to: " + file.getAbsolutePath());
+        try {
+            writer = new FileWriter(file);
+            writer.write(toString());
+        } catch (IOException e) {
+            System.err.println("Error writing file: " + e.getMessage());
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException ignored) {}
+            }
+        }
+        
+    }
+    public void toFile() {
+    	toFile("histories/history"+(historyId++));
+    }
+    
+    
     protected History(Config config){
         this(new ArrayList<>(), new HashMap<>(), new ArrayList<>(), new ArrayList<>(),
                 config.getString("db.database_isolation_level.forbidden_variable", "FORBIDDEN"));
@@ -270,6 +353,9 @@ public abstract class History {
     protected abstract boolean computeConsistency();
 
     public boolean isConsistent(){
+    	if(new Random().nextInt(1000)==0) {
+			toFile();
+		}
         if(consistent == null) {
             consistent = computeConsistency();
         }

@@ -86,6 +86,7 @@ public class Worker<T extends BenchmarkModule> implements Runnable{
     @Override
     public void run() {
 
+    	System.out.println(listTransactions.toString());
         var benchmarkInfo = benchmarkModule.getAllMethods();
         try {
             for(var t : listTransactions){

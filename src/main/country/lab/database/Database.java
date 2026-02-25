@@ -62,7 +62,16 @@ public abstract class Database {
         deletedOnSwap = new LinkedList<>();
         this.config = config;
     }
-
+    private ArrayList<String> getTransactionNames(){
+    	var res =new ArrayList<String>();
+    	for(Transaction transaction:events) {
+    		res.add(((BeginTransactionalEvent)transaction.getFirst()).name);
+    	}
+    	return res;
+    }
+    public void addTransactionNames(History h) {
+    	h.names=getTransactionNames();
+    }
     public static Database getDatabase(Config config) {
         if (databaseInstance == null) {
             databaseInstance = config.getEssentialInstance("db.database_model.class", Database.class,
@@ -243,6 +252,7 @@ public abstract class Database {
     }
 
     public boolean isConsistent(){
+    	addTransactionNames(history);
         return !isAssertionViolated() && history.isConsistent();
     }
 
@@ -320,6 +330,7 @@ public abstract class Database {
                         new Class[]{History.class},
                         new Object[]{history});
             }
+        	addTransactionNames(trueHistory);
             return !isAssertionViolated() && trueHistory.isConsistent();
         }
         else return isConsistent();

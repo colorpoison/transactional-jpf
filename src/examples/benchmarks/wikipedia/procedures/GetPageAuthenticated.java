@@ -21,7 +21,7 @@ public class GetPageAuthenticated extends WikipediaProcedure{
 
         Article a = null;
         try {
-            db.begin();
+            db.begin("GetPageAuthenticated");
 
             var userText = userIP;
             User user = null;

@@ -18,6 +18,7 @@ public class Delivery extends BasicTPCCProcedure{
     }
 
     public void delivery(int numDistricts, int warehouseID, int carrierID){
+    	db.begin("Delivery");
 
         try {
             db.begin();

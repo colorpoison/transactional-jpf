@@ -48,6 +48,9 @@ public class APIDatabase {
     private void writeInstruction(String variable, String value){
         breakTransition();
     }
+    private void beginInstruction(String name){
+        breakTransition();
+    }
     private void beginInstruction(){
         breakTransition();
     }
@@ -72,9 +75,12 @@ public class APIDatabase {
     }
 
     public void begin(){
-        beginInstruction();
+        beginInstruction("undefined");
     }
 
+    public void begin(String name){
+        beginInstruction(name);
+    }
     public void commit(){
         commitInstruction();
     }
