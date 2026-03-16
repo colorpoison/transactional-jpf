@@ -1,1 +1,25 @@
 stockLevel 0 1 100
+createNewOrder 0 1 33496 2 0 [123, 666] [0, 1] [1, 1]
+stockLevel 0 1 100
+orderStatus 0 1 33496 "Patin Piti" false
+orderStatus 0 1 33496 "Patin Piti" true
+delivery 2 1 69000
+delivery 2 1 69001
+delivery 2 1 69002
+delivery 2 1 69003
+delivery 2 1 69004
+payment 0 1 602743 "Montero" true 2.01
+delivery 2 0 69000
+delivery 2 1 69001
+payment 0 0 100007 "Ada" false 3.56
+createNewOrder 0 0 100007 2 0 [991, 234] [0, 1] [1, 1]
+delivery 2 1 69000
+delivery 2 1 69001
+delivery 2 1 69002
+delivery 2 1 69003
+delivery 2 1 69004
+delivery 2 0 69000
+delivery 2 1 69001
+delivery 2 0 69002
+delivery 2 1 69003
+delivery 2 0 69004

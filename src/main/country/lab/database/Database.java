@@ -331,7 +331,10 @@ public abstract class Database {
                         new Object[]{history});
             }
         	addTransactionNames(trueHistory);
-            return !isAssertionViolated() && trueHistory.isConsistent();
+            boolean res = !isAssertionViolated() && trueHistory.isConsistent();
+            if(res)
+            	trueHistory.toFileChance();
+            return res;
         }
         else return isConsistent();
     }

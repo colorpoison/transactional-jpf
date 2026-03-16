@@ -351,11 +351,14 @@ public abstract class History {
     }
 
     protected abstract boolean computeConsistency();
-
-    public boolean isConsistent(){
-    	if(new Random().nextInt(1000)==0) {
+    
+    public void toFileChance() {
+    	if(numberTransactions>1) {
 			toFile();
 		}
+    }
+    
+    public boolean isConsistent(){
         if(consistent == null) {
             consistent = computeConsistency();
         }

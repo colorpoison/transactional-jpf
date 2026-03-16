@@ -18,10 +18,9 @@ public class Delivery extends BasicTPCCProcedure{
     }
 
     public void delivery(int numDistricts, int warehouseID, int carrierID){
-    	db.begin("Delivery");
 
         try {
-            db.begin();
+        	db.begin("Delivery");
 
             for(int districtID = 0; districtID < numDistricts; ++districtID){
 

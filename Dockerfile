@@ -16,6 +16,8 @@ RUN apt update && \
 
 RUN apt -y install python3-pandas python3-numpy python3-matplotlib
 
+RUN apt -y install nano
+
 WORKDIR /trans-jpf
 
 ADD . /trans-jpf/

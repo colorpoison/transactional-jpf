@@ -1,1 +1,25 @@
 stockLevel 0 1 100
+orderStatus 0 1 33496 "Patin Piti" false
+createNewOrder 0 1 3322466 2 0 [123, 666] [0, 1] [1, 1]
+payment 0 1 33496 "Victoria Federica" true 6.19
+delivery 2 0 33496
+createNewOrder 1 0 87765 2 0 [123, 666] [0, 1] [1, 1]
+createNewOrder 1 0 87765 2 0 [991, 234] [0, 1] [1, 1]
+createNewOrder 1 0 87765 2 0 [77, 666] [0, 1] [1, 1]
+createNewOrder 1 0 87765 2 0 [666, 77] [0, 1] [1, 1]
+createNewOrder 1 0 87765 2 0 [991, 123] [0, 1] [1, 1]
+createNewOrder 1 0 3412412 2 0 [123, 666] [0, 1] [1, 1]
+delivery 2 1 69002
+payment 1 0 3412412 "Stan" true 8.20
+delivery 2 0 69003
+createNewOrder 1 1 3322466 2 0 [991, 123] [0, 1] [1, 1]
+createNewOrder 1 0 3412412 2 0 [123, 666] [0, 1] [1, 1]
+createNewOrder 1 0 3412412 2 0 [991, 234] [0, 1] [1, 1]
+createNewOrder 1 0 3412412 2 0 [77, 666] [0, 1] [1, 1]
+createNewOrder 1 0 3412412 2 0 [666, 77] [0, 1] [1, 1]
+createNewOrder 1 0 3412412 2 0 [991, 123] [0, 1] [1, 1]
+orderStatus 1 0 3412412 "Stan" false
+orderStatus 0 0 100007 "Lovelace" true
+orderStatus 0 0 100007 "Lovelace" false
+orderStatus 1 0 3412412 "Stan" true
+orderStatus 0 1 602743 "Montero" false
