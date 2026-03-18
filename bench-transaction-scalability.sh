@@ -13,7 +13,7 @@ execute_benchmark () {
 }
 
 models=(
-  country.lab.histories.CausalHistory
+  country.lab.histories.SerializableHistory
 )
 
 benchmarks=(

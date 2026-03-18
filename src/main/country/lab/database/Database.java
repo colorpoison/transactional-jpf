@@ -333,7 +333,9 @@ public abstract class Database {
         	addTransactionNames(trueHistory);
             boolean res = !isAssertionViolated() && trueHistory.isConsistent();
             if(res)
-            	trueHistory.toFileChance();
+            	trueHistory.toFileChance("Cons");
+            else
+            	trueHistory.toFileChance("Incons");
             return res;
         }
         else return isConsistent();

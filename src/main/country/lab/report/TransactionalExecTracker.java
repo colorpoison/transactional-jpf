@@ -160,4 +160,12 @@ public class TransactionalExecTracker extends ExecTracker {
         out.println("----------------------------------- [" +
                 search.getDepth() + "] backtrack: " + id);
     }
+    
+    @Override
+    public void exceptionThrown (VM vm, ThreadInfo ti, ElementInfo ei) {
+        MethodInfo mi = ti.getTopFrameMethodInfo();
+        if(!mi.getFullName().equals("database.APIDatabase.abort()V")){
+            super.exceptionThrown(vm,ti,ei);
+        }
+    }
 }

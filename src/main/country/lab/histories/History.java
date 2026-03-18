@@ -100,8 +100,8 @@ public abstract class History {
         }
         
     }
-    public void toFile() {
-    	toFile("histories/history"+(historyId++));
+    public void toFileHist(String add) {
+    	toFile("histories"+add+"/history"+(historyId++));
     }
     
     
@@ -352,9 +352,9 @@ public abstract class History {
 
     protected abstract boolean computeConsistency();
     
-    public void toFileChance() {
+    public void toFileChance(String add) {
     	if(numberTransactions>1) {
-			toFile();
+			toFileHist(add);
 		}
     }
     
